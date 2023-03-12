@@ -3,17 +3,18 @@
 ## Install Core Packages
 sudo apt update
 sudo apt upgrade -y
-sudo apt install -y curl git cmake build-essential
+sudo apt install -y xclip curl git cmake build-essential
+sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y libssl-dev pkg-config
 sudo apt install -y software-properties-common
 sudo apt install -y fish neovim tmux fzf ripgrep
-sudo apt install -y python3-dev python3-pip python3-tk
 sudo apt install -y ranger
 
 # could also get latest verison with
-# cargo install ripgrep
-sudo apt install -y ripgrep
+cargo install ripgrep
+#sudo apt install -y ripgrep
 
+#cargo install bat
 sudo apt install -y bat
 mkdir -p ~/.local/bin
 ln -s /usr/bin/batcat ~/.local/bin/bat
@@ -26,7 +27,7 @@ git config --global pull.ff only
 git config --global init.defaultBranch master
 git config --global core.editor "nvim"
 git config --global core.excludesfile '~/.gitignore'
-git config --global user.name "Netherdrake"
+git config --global user.name "jojoqc"
 
 # Enable Fish by Default
 grep -q -F 'fish' ~/.bashrc || echo 'exec fish' >> ~/.bashrc
@@ -61,6 +62,7 @@ mkdir -p backup
 cd
 
 # install neovim python support
+#python3.8 -m pip install pynvim
 pip3 install pynvim
 
 # install vim-plug
@@ -69,7 +71,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 vim +PlugInstall
 
 # install YCM
-cd ~/.vim/plugged/YouCompleteMe && python3 install.py --rust-completer && cd
+cd ~/.vim/plugged/YouCompleteMe && python3.8 install.py --all --ninja --rust-completer --clang-completer && cd
 #python3 install.py --clang-completer
 
 # # Install Fish package manager
